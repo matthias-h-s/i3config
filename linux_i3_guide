@@ -1,0 +1,116 @@
+Linux/GNU with i3wm
+(example debian-based)
+
+    1.  su – root
+    2.  apt install sudo
+         usermod -aG sudo [USERNAMe]
+    3.  sudo apt update && sudo apt upgrade -y
+    4.  sudo apt update && apt install xorg i3-wm i3lock i3status i3blocks rofi -y
+
+    5.  sudo apt install --no-install-recommends sddm
+
+         sudo systemctl enable sddm.service
+
+         [you can also install "lightdm light-gtk-greeter" or gdm3]
+
+    6.   sudo apt update && apt install vim firmware-linux gnome-terminal extrepo nautilus kate build-essential -y
+
+    7.   sudo extrepo enable librewolf
+
+          sudo apt update && apt install librewolf -y
+          sudo apt update && apt install libgtk-3-dev -y
+
+
+    8.   sudo apt update && apt install snapd librewolf libgtk-3-dev linux-headers-$(uname -r) -y
+
+    9.   sudo snap install snapd
+    10. sudo snap install x11-utils-snap --edge
+
+    11. sudo apt update && apt install feh stacer network-manager-gnome -y
+    12. sudo apt update && apt install materia-gtk-theme papirus-icon-theme -y
+    13. sudo apt update && apt install lxappearance brightnessctl -y
+
+    14. sudo apt update && apt install software-properties-common  -y
+    [ NOW YOU CAN USE sudo add-apt-repository ...]
+
+    15. sudo apt update && apt install picom gnome-disk-utility cmatrix  x11-common blueman lshw -y
+    16. sudo apt update && apt install xfce4-power-manager htop neofetch pulseaudio-module-bluetooth pulseaudio-equalizer pulseaudio-module-jack alsa-utils playerctl -y
+    17. sudo apt update && apt install fonts-droid-fallback fonts-font-awesome -y
+
+    18. sudo apt install flatpak
+    19. flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+    20. flatpak install flathub org.gimp.GIMP
+    21. flatpak install flathub org.remmina.Remmina
+    22. flatpak install flathub com.valvesoftware.Steam
+    23. flatpak install flathub org.kde.konsole
+    24. flatpak install flathub org.mozilla.Thunderbird
+    25. flatpak install flathub com.github.IsmaelMartinez.teams_for_linux
+    26. flatpak install flathub org.gnome.World.PikaBackup
+    27. flatpak install flathub org.libreoffice.LibreOffice
+
+
+    sudo EDITOR=vim visudo
+    sudo visudo
+        [USERNAME] ALL=(ALL:ALL) ALL
+
+
+
+[CUSTOMIZE i3]
+sudo mkdir -p ~/.config/i3status/
+sudo mkdir -p ~/.config/rofi/
+sudo mkdir -p /usr/lib/sddm/sddm.conf.d/
+sudo mkdir -p /usr/share/sddm/themes/
+
+sudo cp -r [COPY FROM] /media/usb/config  [COPY TO]  ~/.config/i3/
+
+[FILES AND FOLDERS TO BE COPIED]
+- i3 config file
+- i3 status config file
+- rofi config file
+- sddm config file
+- sddm theme folder
+
+
+terminal:
+    32. nmtui
+    33. rofi-theme-selector
+    34. sudo vim .bashrc [add "neofetch" on the end]
+
+bring "~/.config/i3/config" and "~/.config/i3status/i3status.conf" and ~/.config/rofi/config.rasi
+
+[COMMANDS & INFO]
+
+[TO MOUNT A DRIVE]
+sudo mkdir /media/usb
+            sudo fdisk -l
+            sudo mount /dev/[USB NAME] /media/usb/
+
+[BECOME OWNER]
+sudo chown $USER:$USER [PASS TO FOLDER]
+
+[ENABLE TAP TO CLICK ON LAPTOPS]
+
+    sudo mkdir -p /etc/X11/xorg.conf.d
+    sudo touch /etc/X11/xorg.conf.d/90-touchpad.conf
+
+    sudo vim /etc/X11/xorg.conf.d/90-touchpad.conf
+
+   Section "InputClass"
+        Identifier "touchpad"
+        MatchIsTouchpad "on"
+        Driver "libinput"
+        Option "Tapping" "on"
+        Option "TappingButtonMap" "lrm"
+        Option "NaturalScrolling" "on"
+        Option "ScrollMethod" "twofinger"
+    EndSection
+
+
+[MOUNT A USB DRIVE]
+sudo cp -r /media/usb/config    ~/.config/i3/
+sudo cp -r /media/usb/i3status.conf    ~/.config/i3status/
+        sudo chown $USER:$USER ~/.config/i3status/i3status.conf
+
+
+
